@@ -10,7 +10,7 @@ const MONGODB_URI = 'mongodb://localhost:27017/crud_livros';
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static('public/index.html'));
 app.use(express.json());
 
 mongoose.connect(MONGODB_URI)
@@ -23,7 +23,7 @@ app.post('/livros', async (req, res) => {
         const novoLivro = new Livro({
             titulo: req.body.titulo,
             autor: req.body.autor,
-            ano: req.body.ano
+            ano: req.body.ano,
         });
         const livroSalvo = await novoLivro.save();
         res.status(201).json(livroSalvo);
